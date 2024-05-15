@@ -5,7 +5,7 @@ from django.template import loader
 from pizza_alley_app.models import CurrentOrder, Products
 
 # Create your views here.
-#Cuizon
+# Cuizon
 def landing(request):
     template = loader.get_template('landing.html')
     return HttpResponse(template.render())
@@ -38,3 +38,5 @@ def pizza_employeeOrder(request):
         total = sum(order.total for order in current_order)
  
         return render(request, 'pizza_employeeOrder.html', {'products': products, 'current_order': current_order, 'total': total})
+    
+# <Next Member>
