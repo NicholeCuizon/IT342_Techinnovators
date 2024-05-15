@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.template import loader
+from django.http import HttpResponse
 
 from pizza_alley_app.models import CurrentOrder, Products
 
