@@ -33,3 +33,15 @@ def login(request):
         return render(request, 'login.html', {'login_failed': True})
 
     return render(request, 'login.html')
+
+def dashboard_admin(request):
+    template = loader.get_template('dashboard_admin.html')
+    return HttpResponse(template.render())
+
+def dashboard_employee(request):
+    template = loader.get_template('dashboard_employee.html')
+    return HttpResponse(template.render())
+
+def dashboard_customer(request):
+    template = loader.get_template('dashboard_customer.html')
+    return HttpResponse(template.render())
