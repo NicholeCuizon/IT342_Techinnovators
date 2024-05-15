@@ -11,6 +11,10 @@ def landing(request):
     template = loader.get_template('landing.html')
     return HttpResponse(template.render())
 
+def login(request):
+    template = loader.get_template('login.html')
+    return HttpResponse(template.render())
+
 # Delgado
 @csrf_exempt
 def pizza_employeeOrder(request):
