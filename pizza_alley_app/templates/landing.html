@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -5,7 +6,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="favicon.ico">
   <title>Pizza on Valley</title>
-  <link rel="stylesheet" href="static/css/landing.css">
+  <link rel="stylesheet" href="{% static 'css/landing.css' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
@@ -33,7 +34,7 @@
 <div class="navbar-collapse home" id="navbarSupportedContent">
 <ul class="navbar-nav ms-auto">
 <li class="nav-item">
-    <a href="{% url 'login' %}"><span class="word">Login</span></a>
+    <a class="nav-link" href="{% url 'login' %}"><span class="word">Login</span></a>
 </li>
 </ul>
 </div>

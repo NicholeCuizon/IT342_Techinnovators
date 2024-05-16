@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Form</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			background: url("{% static 'img/2pizza.jpeg'%}") no-repeat center center fixed;
+            background-size: cover;
+		}
+		form {
+			background-color: #fff;
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px #888;
+		}
+		h1 {
+			text-align: center;
+			color: white;
+			margin-top: 50px;
+			margin-bottom: 30px;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+			color: #666;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		input[type="text"], input[type="email"], input[type="password"] {
+			display: block;
+			width: 97%;
+			padding: 10px;
+			border-radius: 3px;
+			border: 1px solid #000;
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+		input[type="submit"], input[type="reset"]{
+			background-color: #ff8243;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+			font-size: 18px;
+			margin-top: 20px;
+			margin-bottom: 10px;
+			transition: background-color 0.3s ease-in-out;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		input[type="reset"]:hover {
+			background-color: #3e8e41;
+			margin-right: auto;
+			margin-left: auto;
+		}
+	</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-transparent navbar-dark navbar fixed-top">
+<a class="navbar-brand" href="{% url 'landing'%}"> <img src="{% static 'img/pizza-loggo.png'%}" style="height: 32px;" alt=""> </a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="navbar-collapse home" id="navbarSupportedContent">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item">
+<a class="nav-link" href="Pizza_Login.php"><span class="word">Log-Out</span></a>
+</li>
+</ul>
+</div>
+</nav>
+	<h1>Registration Form</h1>
+	<form action="" method="post">
+        {% csrf_token %}
+		<label for="email">Email:</label>
+		<input type="text" id="email" name="email" required>
+
+		<label for="First Name">First Name:</label>
+		<input type="text" id="firstname" name="firstname" required>
+
+		<label for="Last Name">Last Name:</label>
+		<input type="text" id="lastname" name="lastname" required>
+
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required>
+
+		<label for="password2">Confirm Password:</label>
+		<input type="password" id="password2" name="password2" required>
+
+		<input type="submit" name ="submit" value="Register">
+		<input type="reset" name ="reset" value="Clear">
+	</form>
+
+	    <!-- JavaScript -->
+		<script>
+			const passwordInput = document.getElementById('password');
+			const confirmPasswordInput = document.getElementById('password2');
+			const checkmarkIcon = document.querySelector('.checkmark');
+			const xmarkIcon = document.querySelector('.xmark');
+	
+			confirmPasswordInput.addEventListener('keyup', () => {
+				if (passwordInput.value === confirmPasswordInput.value) {
+					checkmarkIcon.style.display = 'inline';
+					xmarkIcon.style.display = 'none';
+				} else {
+					checkmarkIcon.style.display = 'none';
+					xmarkIcon.style.display = 'inline';
+				}
+			});
+		</script>
+</body>
+</html>
