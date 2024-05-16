@@ -128,21 +128,3 @@ def dashboard_employee(request):
 
 def dashboard_customer(request):
     return render(request, 'dashboard_customer.html')
-
-def update_account(request, email):
-    account = get_object_or_404(Accounts, email=email)
-
-    if request.method == 'POST':
-        form = AccountUpdateForm(request.POST, request.FILES, instance=account)
-        if form.is_valid():
-            form.save()
-            messages.success(request, f'Account for {account.firstname} has been updated.')
-            return redirect('account_list')  # Replace with the name of the view that lists accounts
-    else:
-        form = AccountUpdateForm(instance=account)
-
-    context = {
-        'form': form,
-        'account': account,
-    }
-    return render(request, 'admin/update_account.html', context)
