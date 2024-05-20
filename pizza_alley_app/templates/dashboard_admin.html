@@ -106,14 +106,17 @@
 	<div class="container">
         <h1>Admin Dashboard</h1>
         <div class="btn-group">
+
+            <!--Admin Features-->
             <a href="finalorder.php"><button>Process Order</button></a>
             <a href="Pizza_AddProduct.php"><button>Add New Product</button></a>
             <a href="Pizza_UpdatePrice.php"><button>Update Product Price</button></a>
             <a href="Pizza_DeleteProduct.php"><button>Delete Product</button></a>
-            <a href="Pizza_UpdateEmployee.php"><button>Update Employee Account</button></a>
-            <a href="{% url 'registration_employee' %}"><button>Register New Employee</button></a>
-            <a href=""><button>Account List</button></a>
 
+            <!--Cuizon-->
+            <a href="{% url 'registration_employee' %}"><button>Register New Employee</button></a>
+            <a href="{% url 'registration_employee' %}"><button>Accounts</button></a>
+            <a href="{% url 'registration_employee' %}"><button>Orders</button></a>
         </div>
 	</div>
 </body>
