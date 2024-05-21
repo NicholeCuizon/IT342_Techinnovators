@@ -108,10 +108,11 @@
         <div class="btn-group">
 
             <!--Admin Features-->
-            <a href="finalorder.php"><button>Process Order</button></a>
+            <a href="{% url 'pizza_employeeOrder'%}"><button>Process Order</button></a>
             <a href="Pizza_AddProduct.php"><button>Add New Product</button></a>
             <a href="Pizza_UpdatePrice.php"><button>Update Product Price</button></a>
             <a href="Pizza_DeleteProduct.php"><button>Delete Product</button></a>
+            
 
             <!--Cuizon-->
             <a href="{% url 'registration_employee' %}"><button>Register New Employee</button></a>
