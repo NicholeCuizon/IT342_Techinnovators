@@ -9,6 +9,7 @@ from django.template import loader
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from .forms import ProductForm, AccountUpdateForm
+from django.db.models import Q
 
 #import models
 from .models import Accounts, CurrentOrder, Products
@@ -16,7 +17,7 @@ from .models import Accounts, CurrentOrder, Products
 #import forms
 from .forms import LoginForm
 
-# Create your views here.
+# Cuizon, Nichole P. - Part
 def landing(request):
     template = loader.get_template('landing.html')
     return HttpResponse(template.render())
@@ -48,9 +49,6 @@ def login(request):
         return render(request, 'login.html', {'login_failed': True})
 
     return render(request, 'login.html')
-
-def landing(request):
-    return render(request, 'landing.html')
 
 def registration_customer(request):
     if request.method == 'POST':
@@ -94,9 +92,7 @@ def registration_employee(request):
         user_type = request.POST['user_type']
         password = request.POST['password']
  
-        # Client-side validation is handled by JavaScript, so no need to check it here
- 
-        # Proceed with saving data to the database
+        # Save data to db
         obj = Accounts()
         obj.email = email
         obj.firstname = firstname
@@ -105,8 +101,8 @@ def registration_employee(request):
         obj.password = password
         obj.save()
        
-        # Redirect to the login page after successful registration
-        return redirect('login')  # Replace 'login' with the actual URL name for your login page
+        # Redirect to the login page 
+        return redirect('login') 
  
     context = {}
  
@@ -129,6 +125,42 @@ def dashboard_employee(request):
 
 def dashboard_customer(request):
     return render(request, 'dashboard_customer.html')
+
+def update_account(request, email):
+    account = get_object_or_404(Accounts, email=email)
+
+    if request.method == 'POST':
+        form = AccountUpdateForm(request.POST, request.FILES, instance=account)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Account for {account.firstname} has been updated.')
+            return redirect('account_list') 
+    else:
+        form = AccountUpdateForm(instance=account)
+
+    context = {
+        'form': form,
+        'account': account,
+    }
+    return render(request, 'admin/update_account.html', context)
+
+def delete_account(request, email):
+    account = get_object_or_404(Accounts, email=email)
+    if request.method == 'POST':
+        account.delete()
+        messages.success(request, f'Account for {account.firstname} has been deleted.')
+        return redirect('account_list')  # Replace with the name of the view that lists accounts
+    return render(request, 'admin/delete_account.html', {'account': account})
+
+def account_list(request):
+    query = request.GET.get('search','')
+    if query:
+        accounts = Accounts.objects.filter(
+            Q(firstname__icontains=query) | Q(lastname__icontains=query)
+        )
+    else:
+        accounts = Accounts.objects.all()
+    return render(request, 'admin/account_list.html', {'accounts': accounts})
 
 # Delgado 
 
