@@ -1,5 +1,6 @@
 from django import forms
 from .models import Accounts
+from .models import Products
 from django.contrib.auth.forms import AuthenticationForm
 
 class LoginForm(AuthenticationForm):
@@ -17,4 +18,12 @@ class AccountUpdateForm(forms.ModelForm):
     class Meta:
         model = Accounts
         fields = ['firstname', 'lastname', 'email', 'user_type', 'profile_picture']
+
+
+# Lawas, Arziel Mae L. - part
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Products
+        fields = ['productID', 'productName', 'price']
 

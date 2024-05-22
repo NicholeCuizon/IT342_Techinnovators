@@ -4,10 +4,11 @@ from django.contrib import messages
 from django.core.validators import EmailValidator
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
+from .forms import ProductForm, AccountUpdateForm
 
 #import models
 from .models import Accounts, CurrentOrder, Products
@@ -158,3 +159,18 @@ def pizza_employeeOrder(request):
         total = sum(order.total for order in current_order)
 
         return render(request, 'pizza_employeeOrder.html', {'products': products, 'current_order': current_order, 'total': total})
+    
+       
+# Lawas, Arziel Mae L. - part
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'status': 'success', 'message': 'Product added successfully'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Error: Form is not valid'})
+    else:
+        form = ProductForm()
+    return render(request, 'add_product.html', {'form': form})

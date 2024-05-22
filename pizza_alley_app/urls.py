@@ -10,4 +10,6 @@ urlpatterns = [
     path('dashboard_employee/', views.dashboard_employee, name='dashboard_employee'),
     path('dashboard_customer/', views.dashboard_customer, name='dashboard_customer'),
     path('dashboard_admin/pizza_employeeOrder', views.pizza_employeeOrder, name='pizza_employeeOrder'),
+    path('add_product/', views.add_product, name='add_product'),  # Correct view for add_product
+    path('pizza_employeeOrder/', views.pizza_employeeOrder, name='pizza_employeeOrder'),  # Correct view for add_product
 ]
