@@ -162,6 +162,16 @@ def account_list(request):
         accounts = Accounts.objects.all()
     return render(request, 'admin/account_list.html', {'accounts': accounts})
 
+def product_list(request):
+    query = request.GET.get('search','')
+    if query:
+        products = Products.objects.filter(
+            Q(productName__icontains=query) | Q(productID__icontains=query)
+        )
+    else:
+        products = Products.objects.all()
+    return render(request, 'product_list.html', {'products': products})
+
 # Delgado 
 
 @csrf_exempt
