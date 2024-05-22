@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://kit.fontawesome.com/56614d0368.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Account List</title>
+    <style>
+        body {
+            background: url("{% static 'img/2pizza.jpeg' %}") no-repeat center center fixed;
+            background-size: cover;
+            display: grid;
+            place-items: center;
+        }
+        .container {
+            display: grid;
+            margin-top: 7%;
+            text-align: center;
+            place-items: center;
+            border: 2px solid rgba(255, 255, 255, .3);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, .3);
+            backdrop-filter: invert(1);
+            padding: 20px;
+            width: 80%;
+            font-size: 1.5em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 2px solid black; /* Added border to table */
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid black; /* Added border to cells */
+            padding: 10px; /* Increased padding */
+            text-align: left;
+            font-weight: bold; /* Made text bold */
+            color: #333; /* Darkened text color */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .word {
+            color: white;
+            font-size: 1.3rem;
+        }
+        .word:hover {
+            color: yellow;
+        }
+        .home {
+            margin-right: 48px;
+        }
+        .navbar-brand {
+            margin-left: 48px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-transparent navbar-dark navbar fixed-top">
+        <a class="navbar-brand" href=""> <img src="{% static 'img/pizza-loggo.png' %}" style="height: 32px;" alt=""> </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse home" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard_admin'%}"><span class="word">Home</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Pizza_Login.php"><span class="word">Log Out</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h2>Account List</h2>
+        
+        <!-- Search Form -->
+        <form method="GET" action="">
+            <div class="input-group mb-3">
+                <input type="text" name="search" class="form-control" placeholder="Search by First or Last Name" aria-label="Search" aria-describedby="button-search">
+                <button class="btn btn-outline-secondary" type="submit" id="button-search">Search</button>
+            </div>
+        </form>
+        
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>User Type</th>
+                <th>Actions</th>
+            </tr>
+            {% for account in accounts %}
+            <tr>
+                <td>{{ account.firstname }}</td>
+                <td>{{ account.lastname }}</td>
+                <td>{{ account.email }}</td>
+                <td>
+                    {% if account.user_type == 0 %}
+                        Employee
+                    {% elif account.user_type == 1 %}
+                        Admin
+                    {% elif account.user_type == 2 %}
+                        Customer
+                    {% else %}
+                        Unknown
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'update_account' account.email %}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{% url 'delete_account' account.email %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
