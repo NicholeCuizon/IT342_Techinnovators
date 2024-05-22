@@ -13,9 +13,13 @@ urlpatterns = [
     path('accounts/', views.account_list, name='account_list'),
     path('accounts/update/<str:email>/', views.update_account, name='update_account'),
     path('accounts/delete/<str:email>/', views.delete_account, name='delete_account'),
+    
 
     # Assigned Member??
     path('dashboard_admin/pizza_employeeOrder', views.pizza_employeeOrder, name='pizza_employeeOrder'),
+    
+    # Tejam
+    path('dashboard_customer/pizza_customerOrder/', views.pizza_customerOrder, name='pizza_customerOrder'),
 
     # Lawas, Arziel Mae L.
     path('add_product/', views.add_product, name='add_product'),
