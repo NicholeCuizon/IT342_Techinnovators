@@ -104,22 +104,37 @@
 		<input type="reset" name ="reset" value="Clear">
 	</form>
 
-	    <!-- JavaScript -->
-		<script>
-			const passwordInput = document.getElementById('password');
-			const confirmPasswordInput = document.getElementById('password2');
-			const checkmarkIcon = document.querySelector('.checkmark');
-			const xmarkIcon = document.querySelector('.xmark');
+	<!-- JavaScript -->
+	<script>
+		const passwordInput = document.getElementById('password');
+		const confirmPasswordInput = document.getElementById('password2');
+		const checkmarkIcon = document.getElementById('checkmark');
+		const xmarkIcon = document.getElementById('xmark');
+		const clearButton = document.querySelector('input[type="reset"]');
 	
-			confirmPasswordInput.addEventListener('keyup', () => {
-				if (passwordInput.value === confirmPasswordInput.value) {
-					checkmarkIcon.style.display = 'inline';
-					xmarkIcon.style.display = 'none';
-				} else {
-					checkmarkIcon.style.display = 'none';
-					xmarkIcon.style.display = 'inline';
-				}
-			});
-		</script>
+		// Function to clear the form and hide the checkmark icon
+		function clearForm() {
+			confirmPasswordInput.style.borderColor = '#000'; // Reset border color
+			checkmarkIcon.style.display = 'none'; // Hide checkmark
+			xmarkIcon.style.display = 'none'; // Hide xmark
+		}
+	
+		// Event listener for the "Clear" button
+		clearButton.addEventListener('click', clearForm);
+	
+		// Event listener for checking password match
+		confirmPasswordInput.addEventListener('keyup', () => {
+			if (passwordInput.value === confirmPasswordInput.value) {
+				confirmPasswordInput.style.borderColor = 'green';
+				checkmarkIcon.style.display = 'inline';
+				xmarkIcon.style.display = 'none';
+			} else {
+				confirmPasswordInput.style.borderColor = 'red';
+				checkmarkIcon.style.display = 'none';
+				xmarkIcon.style.display = 'inline';
+			}
+		});
+	</script>
+	
 </body>
 </html>
