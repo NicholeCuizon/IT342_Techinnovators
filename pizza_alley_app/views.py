@@ -10,7 +10,7 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 #import models
-from .models import Accounts
+from .models import Accounts, CurrentOrder, Products
 
 #import forms
 from .forms import LoginForm
