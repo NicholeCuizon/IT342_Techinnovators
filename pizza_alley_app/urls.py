@@ -15,7 +15,7 @@ urlpatterns = [
     path('accounts/delete/<str:email>/', views.delete_account, name='delete_account'),
     
 
-    # Assigned Member??
+    # Delgado, Donnell Keith D.
     path('dashboard_admin/pizza_employeeOrder', views.pizza_employeeOrder, name='pizza_employeeOrder'),
     
     # Tejam

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Accounts
+from .models import Accounts, Orders
 from .models import Products
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -26,4 +26,12 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Products
         fields = ['productID', 'productName', 'price']
+
+
+# Delgado, Donnell Keith D. - part
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Orders
+        fields = ['employeeID', 'employeeName', 'totalSales']
 

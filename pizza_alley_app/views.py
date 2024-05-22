@@ -12,7 +12,7 @@ from .forms import ProductForm, AccountUpdateForm
 from django.db.models import Q
 
 #import models
-from .models import Accounts, CurrentOrder, Products
+from .models import Accounts, CurrentOrder, Orders, Products
 
 #import forms
 from .forms import LoginForm
@@ -166,6 +166,14 @@ def account_list(request):
 
 @csrf_exempt
 def pizza_employeeOrder(request):
+    email = request.session.get('user_email')
+    user = Accounts.objects.filter(email=email).first() if email else None
+    user_info = {
+        'firstname': user.firstname if user else '',
+        'id': user.id if user else '',
+        'profile_picture': user.profile_picture.url if user and user.profile_picture else 'default-profile.png'
+    }
+
     if request.method == 'POST':
         if 'remove_item' in request.POST:
             currentid = request.POST.get('id')
@@ -184,13 +192,31 @@ def pizza_employeeOrder(request):
             order.save()
 
             return redirect('pizza_employeeOrder')
+        elif 'place_order' in request.POST:
+            employeeName = request.POST.get('employeeName')
+            employeeID = request.POST.get('employeeID')
+            totalSales = request.POST.get('totalSales')
+
+            # Create a new Order object with the form data
+            order = Orders(employeeName=employeeName, employeeID=employeeID, totalSales=totalSales)
+            order.save()
+            CurrentOrder.objects.all().delete()
+
+            return redirect('pizza_employeeOrder')
     
     else:  #Get request
         products = Products.objects.all()
         current_order = CurrentOrder.objects.all()  
         total = sum(order.total for order in current_order)
 
-        return render(request, 'pizza_employeeOrder.html', {'products': products, 'current_order': current_order, 'total': total})
+        context = {
+            'products': products,
+            'current_order': current_order,
+            'total': total,
+            'user_info': user_info,  
+        }
+
+        return render(request, 'pizza_employeeOrder.html', context)
     
     # Tejam
     
