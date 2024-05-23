@@ -96,11 +96,13 @@
 </button>
 
 <div class="navbar-collapse home" id="navbarSupportedContent">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'login' %}"><span class="word">Log-Out</span></a>
-</li>
-</ul>
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+                <span class="word">Log-Out</span>
+            </a>
+        </li>
+    </ul>
 </div>
 </nav>
 	<div class="container">
@@ -108,8 +110,8 @@
         <div class="btn-group">
 
             <!--Assigned Member-->
-            <a href="{% url 'pizza_customerOrder' %}"><button>Process Order</button></a>
-            <a href="{% url 'pizza_customerOrder' %}"><button>My Orders</button></a> <!--Order History-->
+            <a href="finalorder.php"><button>Process Order</button></a>
+            <a href="finalorder.php"><button>My Orders</button></a> <!--Order History-->
         </div>
 	</div>
 </body>

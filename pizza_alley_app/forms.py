@@ -1,37 +1,21 @@
 from django import forms
-from .models import Accounts, Orders
-from .models import Accounts
-from .models import Products
-from django.contrib.auth.forms import AuthenticationForm
+from .models import Products, Accounts
 
-class LoginForm(AuthenticationForm):
-    username = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+class ProductUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Products
+        fields = ['productID', 'productName', 'price']
 
 class AccountUpdateForm(forms.ModelForm):
-    USER_TYPE_CHOICES = [
-        (0, 'Employee'),
-        (1, 'Admin')
-    ]
-
-    user_type = forms.ChoiceField(choices=USER_TYPE_CHOICES, label='User Type')
-
     class Meta:
         model = Accounts
-        fields = ['firstname', 'lastname', 'email', 'user_type']
-    
-# Lawas, Arziel Mae L. - part
+        fields = ['email', 'firstname', 'lastname', 'user_type', 'profile_picture']
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Products
         fields = ['productID', 'productName', 'price']
 
-
-# Delgado, Donnell Keith D. - part
-
-class OrderForm(forms.ModelForm):
-    class Meta:
-        model = Orders
-        fields = ['employeeID', 'employeeName', 'totalSales']
-    
+class LoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)

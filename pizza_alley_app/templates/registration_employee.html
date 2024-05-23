@@ -1,197 +1,205 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/56614d0368.js" crossorigin="anonymous"></script>
-
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-	<title>Registration Form</title>
-	<style>
-		body {
-			background-color: #f2f2f2;
-			background: url("{% static 'img/2pizza.jpeg' %}") no-repeat center center fixed;
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            background: url("{% static 'img/2pizza.jpeg' %}") no-repeat center center fixed;
             background-size: cover;
-		}
-		form {
-			background-color: #fff;
-			max-width: 500px;
-			margin: 0 auto;
-			padding: 20px;
-			border-radius: 5px;
-			box-shadow: 0px 0px 10px #888;
-		}
-		h1 {
-			text-align: center;
-			color: white;
-			margin-top: 50px;
-			margin-bottom: 30px;
-		}
-		label {
-			display: block;
-			margin-bottom: 10px;
-			color: #666;
-			font-size: 18px;
-			font-weight: bold;
-		}
-		input[type="text"], input[type="email"], input[type="password"] {
-			display: block;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #888;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            display: block;
             width: 97%;
             padding: 10px;
             border-radius: 3px;
-            border: 1px solid #000; 
+            border: 1px solid #000;
             font-size: 16px;
             margin-bottom: 20px;
-            outline: none;
-		}
-		input[type="submit"], input[type="reset"]{
-			background-color: #ff8243;
-			color: white;
-			padding: 10px 20px;
-			border: none;
-			border-radius: 3px;
-			cursor: pointer;
-			font-size: 18px;
-			margin-top: 20px;
-			margin-bottom: 10px;
-			transition: background-color 0.3s ease-in-out;
-		}
-		input[type="submit"]:hover {
-			background-color: #3e8e41;
-			margin-right: auto;
-			margin-left: auto;
-		}
-
-		input[type="reset"]:hover {
-			background-color: #3e8e41;
-			margin-right: auto;
-			margin-left: auto;
-		}
-
-		.word {
-            color: white;
-            font-size: 1.3rem;
         }
 
-        .word:hover {
+        .password-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .password-check input[type="password"] {
+            width: 94%;
+            margin-bottom: 0;
+        }
+
+        .password-check span {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .password-check p {
+            margin-top: 5px;
+        }
+
+		.logout-link {
+			font-size: 20px; /* Adjust the font size as needed */
+			color: white; /* Set the text color to white */
+			margin-right: 20px; /* Add some right margin for spacing */
+		}
+
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #ff8243;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #3e8e41;
+        }
+
+        .word{
+        color:white;
+         font-size:1.3rem;
+        }
+        .word:hover{
             color: yellow;
         }
-
-        .home {
-            margin-right: 48px;
+        .home{
+            margin-right:48px;
         }
-
-        .navbar-brand {
-            margin-left: 48px;
+        .navbar-brand{
+             margin-left:48px;
         }
-
-		.success-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            display: none;
-            /* Hide by default */
-        }
-	</style>
+    </style>
 </head>
+
 <body>
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg bg-transparent navbar-dark navbar fixed-top">
-    <a class="navbar-brand">
-        <img src="{% static 'img/pizza-loggo.png' %}" style="height: 32px;" alt="">
-    </a>    
+    <!-- Navigation -->
+	<nav class="navbar navbar-expand-lg bg-transparent navbar-dark navbar fixed-top">
+		<a class="navbar-brand" href="{% url 'dashboard_admin' %}"> <img src="{% static 'img/pizza-loggo.png' %}" style="height: 32px;" alt=""> </a>
 
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-<div class="navbar-collapse home" id="navbarSupportedContent">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item">
-<a class="nav-link"><span class="word">Log-Out</span></a>
-</li>
-</ul>
-</div>
-</nav>
-	<h1>Registration Form</h1>
-	<form action="" method="post">
-		{% csrf_token %}
-		<label for="email">Email:</label>
-		<input type="text" id="email" name="email" required>
+        <div class="navbar-collapse home" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                </li>
+            </ul>
+        </div>
+	</nav>
+	
+    <h1>Registration Form</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
 
-		<label for="First Name">First Name:</label>
-		<input type="text" id="firstname" name="firstname" required>
+        <label for="First Name">First Name:</label>
+        <input type="text" id="firstname" name="firstname" required>
 
-		<label for="Last Name">Last Name:</label>
-		<input type="text" id="lastname" name="lastname" required>
+        <label for="Last Name">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" required>
 
         <label for="user_type">User Type:</label>
-		<select id="user_type" name="user_type" required>
-			<option value="">Select User Type</option>
-			<option value="1">Admin</option>
-			<option value="0">Employee</option>
-		</select><br><br>
+        <select id="user_type" name="user_type" required>
+            <option value="">Select User Type</option>
+            <option value="1">Admin</option>
+            <option value="0">Employee</option>
+        </select><br><br>
 
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
 
-		<label for="password2">Confirm Password:</label>
-		<input type="password" id="password2" name="password2" required>
+        <label for="password2">Confirm Password:</label>
+        <input type="password" id="password2" name="password2" required>
 
-		<input type="submit" name ="submit" value="Register">
-		<input type="reset" name ="reset" value="Clear">
-	</form>
+        <div>
+            <p id="password-match-msg" style="display: none; color: green;">Passwords match</p>
+            <p id="password-not-match-msg" style="display: none; color: red;">Passwords do not match</p>
+            <span id="checkmark" style="display: none; color: green;">&#10004;</span>
+            <span id="xmark" style="display: none; color: red;">&#10008;</span>
+        </div>
 
-	<!-- JavaScript -->
-	<script>
-		const passwordInput = document.getElementById('password');
-		const confirmPasswordInput = document.getElementById('password2');
-		const checkmarkIcon = document.getElementById('checkmark');
-		const xmarkIcon = document.getElementById('xmark');
-		const clearButton = document.querySelector('input[type="reset"]');
-	
-		// Function to clear the form and hide the checkmark icon
-		function clearForm() {
-			confirmPasswordInput.style.borderColor = '#000'; // Reset border color
-			checkmarkIcon.style.display = 'none'; // Hide checkmark
-			xmarkIcon.style.display = 'none'; // Hide xmark
-		}
-	
-		// Event listener for the "Clear" button
-		clearButton.addEventListener('click', clearForm);
-	
-		// Event listener for checking password match
-		confirmPasswordInput.addEventListener('keyup', () => {
-			if (passwordInput.value === confirmPasswordInput.value) {
-				confirmPasswordInput.style.borderColor = 'green';
-				checkmarkIcon.style.display = 'inline';
-				xmarkIcon.style.display = 'none';
-			} else {
-				confirmPasswordInput.style.borderColor = 'red';
-				checkmarkIcon.style.display = 'none';
-				xmarkIcon.style.display = 'inline';
-			}
-		});
-	</script>
+        <input type="submit" name="submit" value="Register">
+        <input type="reset" name="reset" value="Clear">
+    </form>
+
+    <!-- JavaScript -->
+    <script>
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('password2');
+        const checkmarkIcon = document.getElementById('checkmark');
+        const xmarkIcon = document.getElementById('xmark');
+        const passwordMatchMsg = document.getElementById('password-match-msg');
+        const passwordNotMatchMsg = document.getElementById('password-not-match-msg');
+        const clearButton = document.querySelector('input[type="reset"]');
+
+        // Function to clear the form and hide the checkmark and xmark icons
+        function clearForm() {
+            confirmPasswordInput.style.borderColor = '#000'; // Reset border color
+            checkmarkIcon.style.display = 'none'; // Hide checkmark
+            xmarkIcon.style.display = 'none'; // Hide xmark
+            passwordMatchMsg.style.display = 'none'; // Hide match message
+            passwordNotMatchMsg.style.display = 'none'; // Hide not match message
+        }
+
+        // Event listener for the "Clear" button
+        clearButton.addEventListener('click', clearForm);
+
+        // Event listener for checking password match
+        confirmPasswordInput.addEventListener('keyup', () => {
+            if (passwordInput.value === confirmPasswordInput.value) {
+                confirmPasswordInput.style.borderColor = 'green';
+                checkmarkIcon.style.display = 'inline';
+                xmarkIcon.style.display = 'none';
+                passwordMatchMsg.style.display = 'inline'; // Show match message
+                passwordNotMatchMsg.style.display = 'none'; // Hide not match message
+            } else {
+                confirmPasswordInput.style.borderColor = 'red';
+                checkmarkIcon.style.display = 'none';
+                xmarkIcon.style.display = 'inline';
+                passwordMatchMsg.style.display = 'none'; // Hide match message
+                passwordNotMatchMsg.style.display = 'inline'; // Show not match message
+            }
+        });
+    </script>
 </body>
+
 </html>

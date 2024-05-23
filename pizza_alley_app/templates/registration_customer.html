@@ -8,7 +8,7 @@
 	<style>
 		body {
 			background-color: #f2f2f2;
-			background: url("{% static 'img/2pizza.jpeg'%}") no-repeat center center fixed;
+			background: url("{% static 'img/2pizza.jpeg' %}") no-repeat center center fixed;
 			background-size: cover;
 		}
 
@@ -48,6 +48,32 @@
 			margin-bottom: 20px;
 		}
 
+		.password-check {
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		.password-check input[type="password"] {
+			width: 94%;
+			margin-bottom: 0;
+		}
+
+		.password-check span {
+			font-size: 24px;
+			margin-left: 10px;
+		}
+
+		.password-check p {
+			margin-top: 5px;
+		}
+
+		.logout-link {
+			font-size: 20px; /* Adjust the font size as needed */
+			color: white; /* Set the text color to white */
+			margin-right: 20px; /* Add some right margin for spacing */
+		}
+
 		input[type="submit"],
 		input[type="reset"] {
 			background-color: #ff8243;
@@ -62,16 +88,9 @@
 			transition: background-color 0.3s ease-in-out;
 		}
 
-		input[type="submit"]:hover {
-			background-color: #3e8e41;
-			margin-right: auto;
-			margin-left: auto;
-		}
-
+		input[type="submit"]:hover,
 		input[type="reset"]:hover {
 			background-color: #3e8e41;
-			margin-right: auto;
-			margin-left: auto;
 		}
 	</style>
 </head>
@@ -79,21 +98,22 @@
 <body>
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg bg-transparent navbar-dark navbar fixed-top">
-		<a class="navbar-brand" href="{% url 'landing'%}"> <img src="{% static 'img/pizza-loggo.png'%}"
-				style="height: 32px;" alt=""> </a>
+		<a class="navbar-brand" href="{% url 'landing' %}"> <img src="{% static 'img/pizza-loggo.png' %}" style="height: 32px;" alt=""> </a>
 
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
 		<div class="navbar-collapse home" id="navbarSupportedContent">
-			<ul class="navbar-nav ms-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'login' %}"><span class="word">Log-Out</span></a>
-				</li>
-			</ul>
-		</div>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">
+                        <span class="word" style="font-size: 1.5em; color: white;">Log-Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+		
 	</nav>
 	<h1>Registration Form</h1>
 	<form action="" method="post">
@@ -101,10 +121,10 @@
 		<label for="email">Email:</label>
 		<input type="text" id="email" name="email" required>
 
-		<label for="First Name">First Name:</label>
+		<label for="firstname">First Name:</label>
 		<input type="text" id="firstname" name="firstname" required>
 
-		<label for="Last Name">Last Name:</label>
+		<label for="lastname">Last Name:</label>
 		<input type="text" id="lastname" name="lastname" required>
 
 		<label for="password">Password:</label>
@@ -112,52 +132,57 @@
 
 		<label for="password2">Confirm Password:</label>
 		<input type="password" id="password2" name="password2" required>
-
-		<span id="checkmark" style="display: none; color: green;">&#10004;</span>
-		<span id="xmark" style="display: none; color: red;">&#10008;</span>
+		
+		<div>
+			<p id="password-match-msg" style="display: none; color: green;">Passwords match</p>
+			<p id="password-not-match-msg" style="display: none; color: red;">Passwords do not match</p>
+			<span id="checkmark" style="display: none; color: green;">&#10004;</span>
+			<span id="xmark" style="display: none; color: red;">&#10008;</span>
+		</div>
 
 		<input type="submit" name="submit" value="Register">
 		<input type="reset" name="reset" value="Clear">
 	</form>
 
 	<!-- JavaScript -->
-	<!-- JavaScript -->
 	<script>
 		const passwordInput = document.getElementById('password');
 		const confirmPasswordInput = document.getElementById('password2');
 		const checkmarkIcon = document.getElementById('checkmark');
 		const xmarkIcon = document.getElementById('xmark');
+		const passwordMatchMsg = document.getElementById('password-match-msg');
+		const passwordNotMatchMsg = document.getElementById('password-not-match-msg');
 		const clearButton = document.querySelector('input[type="reset"]');
-	
-		// Function to clear the form and hide the checkmark icon
+
+		// Function to clear the form and hide the checkmark and xmark icons
 		function clearForm() {
 			confirmPasswordInput.style.borderColor = '#000'; // Reset border color
 			checkmarkIcon.style.display = 'none'; // Hide checkmark
 			xmarkIcon.style.display = 'none'; // Hide xmark
+			passwordMatchMsg.style.display = 'none'; // Hide match message
+			passwordNotMatchMsg.style.display = 'none'; // Hide not match message
 		}
-	
+
 		// Event listener for the "Clear" button
 		clearButton.addEventListener('click', clearForm);
-	
+
 		// Event listener for checking password match
 		confirmPasswordInput.addEventListener('keyup', () => {
 			if (passwordInput.value === confirmPasswordInput.value) {
 				confirmPasswordInput.style.borderColor = 'green';
 				checkmarkIcon.style.display = 'inline';
 				xmarkIcon.style.display = 'none';
+				passwordMatchMsg.style.display = 'inline'; // Show match message
+				passwordNotMatchMsg.style.display = 'none'; // Hide not match message
 			} else {
 				confirmPasswordInput.style.borderColor = 'red';
 				checkmarkIcon.style.display = 'none';
 				xmarkIcon.style.display = 'inline';
+				passwordMatchMsg.style.display = 'none'; // Hide match message
+				passwordNotMatchMsg.style.display = 'inline'; // Show not match message
 			}
 		});
 	</script>
-<<<<<<< HEAD
-</body>
-=======
-	
-
 </body>
 
->>>>>>> 8a1263d (Arziel Coddess)
 </html>

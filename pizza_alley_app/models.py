@@ -1,4 +1,3 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
 # Cuizon
@@ -34,6 +33,9 @@ class Products(models.Model):
     productID = models.CharField(max_length=5, primary_key=True)
     productName = models.CharField(max_length=200)
     price = models.FloatField()
+
+    def __str__(self):
+        return self.productName
 
 class Sales(models.Model):
     salesID = models.AutoField(primary_key=True)

@@ -178,11 +178,13 @@
 
       <div class="navbar-collapse home" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="Pizza_Login.php"><span class="word">Log-Out</span></a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <span class="word">Log-Out</span>
+                </a>
+            </li>
         </ul>
-      </div>
+    </div>
     </nav>
 
     <div class="wrapper">
@@ -216,11 +218,9 @@
           <label for="quantity">Quantity:</label>
           <input type="number" id="quantity" name="quantity" min="1" max="10" /><br /><br />
           <input type="submit" name="add_item" value="Add" />
+
+          <input type="submit" name="placeOrder" value="Place Order" />
           <input type="submit" name="cancelOrder" value="Cancel Order" />
-          <input type="hidden" name="employeeName" value="{{ user_info.firstname }}" />
-          <input type="hidden" name="employeeID" value="{{ user_info.id }}" />
-          <input type="hidden" name="totalSales" value="{{ total }}" />
-          <input type="submit" name="place_order" value="Place Order" />
         </form>
       </div>
 

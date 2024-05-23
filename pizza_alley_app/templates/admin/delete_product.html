@@ -2,7 +2,7 @@
 {% load static %}
 <html>
 <head>
-    <title>Delete Account</title>
+    <title>Delete Product</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,8 +40,8 @@
 </head>
 <body>
     <img src="{% static 'img/pizza-loggo.png' %}" alt="Logo" class="logo">
-    <h2 style="font-weight: bold; color: black;">Delete Account</h2>
-    <p style="font-weight: bold; color: white;">Are you sure you want to delete the account for {{ account.firstname }}?</p>
+    <h2 style="font-weight: bold; color: black;">Delete Product</h2>
+    <p style="font-weight: bold; color: white;">Are you sure you want to delete the product for {{ product.productName }}?</p>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Delete</button>

@@ -135,31 +135,34 @@
         <div class="navbar-collapse home" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'landing' %}"><span class="word">Home | </span> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><span class="word">Login</span></a>
+                    <a class="nav-link" href="{% url 'logout' %}">
+                        <span class="word">Refresh</span>
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container">
         <img class="acc" src="{% static 'img/acc.png' %}" alt="acc">
-        <form action="" method="POST" class="login_container" onsubmit="novalidate">
+        <form action="{% url 'login' %}" method="post" class="login_container">
             {% csrf_token %}
             <div class="login">
-                <label>Email</label>
+                <label>Email:</label>
                 <input class="square" type="text" name="email" required>
             </div>
             <div class="login">
-                <label>Password</label>
+                <label>Password:</label>
                 <input class="square" type="password" name="password" required>
             </div>
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
             <div class="login">
-                <input class="myButton" type="submit" value="Login" name="Login">
+                <input class="myButton" type="submit" value="Login">
             </div>
             <a class="word" href="{% url 'registration_customer' %}">Create an Account</a>
         </form>
+        
     </div>
 </body>
 </html>
