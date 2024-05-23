@@ -228,7 +228,6 @@ def pizza_employeeOrder(request):
         return render(request, 'pizza_employeeOrder.html', {'products': products, 'current_order': current_order, 'total': total})
     
 # Tejam
-
 @csrf_exempt
 def pizza_customerOrder(request):
     if request.method == 'POST':
@@ -270,7 +269,6 @@ def pizza_customerOrder(request):
         'current_order': current_order,
         'total': total,
     })
-
 
 # Lawas, Arziel Mae L. - part
 

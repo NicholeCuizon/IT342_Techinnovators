@@ -34,4 +34,4 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Orders
         fields = ['employeeID', 'employeeName', 'totalSales']
-        fields = ['productID', 'productName', 'price']
+    

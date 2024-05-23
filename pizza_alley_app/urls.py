@@ -24,8 +24,4 @@ urlpatterns = [
     # Lawas, Arziel Mae L.
     path('add_product/', views.add_product, name='add_product'),
     path('pizza_employeeOrder/', views.pizza_employeeOrder, name='pizza_employeeOrder'), 
-
-    # Lawas, Arziel Mae L. - part
-
-    path('add_product/', views.add_product, name='add_product'),
 ]
