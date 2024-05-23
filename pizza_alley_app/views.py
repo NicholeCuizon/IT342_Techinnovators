@@ -249,6 +249,27 @@ def pizza_customerOrder(request):
             )
             order.save()
 
+        elif 'placeOrder' in request.POST:
+            # Logic to place order (e.g., move current order to order history)
+            pass
+
+        elif 'cancelOrder' in request.POST:
+            # Logic to cancel order (e.g., delete all current order items)
+            CurrentOrder.objects.all().delete()
+
+        return redirect('pizza_customerOrder')
+
+    # If GET request, or POST handling form submissions has finished
+    products = Products.objects.all()
+    current_order = CurrentOrder.objects.all()
+    total = sum(order.total for order in current_order)
+
+    return render(request, 'pizza_customerOrder.html', {
+        'products': products,
+        'current_order': current_order,
+        'total': total,
+    })
+
 
 # Lawas, Arziel Mae L. - part
 
