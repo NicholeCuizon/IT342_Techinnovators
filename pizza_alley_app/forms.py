@@ -17,7 +17,7 @@ class AccountUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Accounts
-        fields = ['firstname', 'lastname', 'email', 'user_type', 'profile_picture']
+        fields = ['firstname', 'lastname', 'email', 'user_type']
 
 
 # Lawas, Arziel Mae L. - part
