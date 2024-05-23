@@ -10,6 +10,7 @@ urlpatterns = [
     path('dashboard_admin/', views.dashboard_admin, name='dashboard_admin'),
     path('dashboard_employee/', views.dashboard_employee, name='dashboard_employee'),
     path('dashboard_customer/', views.dashboard_customer, name='dashboard_customer'),
+<<<<<<< HEAD
     path('accounts/', views.account_list, name='account_list'),
     path('accounts/update/<str:email>/', views.update_account, name='update_account'),
     path('accounts/delete/<str:email>/', views.delete_account, name='delete_account'),
@@ -24,4 +25,10 @@ urlpatterns = [
     # Lawas, Arziel Mae L.
     path('add_product/', views.add_product, name='add_product'),
     path('pizza_employeeOrder/', views.pizza_employeeOrder, name='pizza_employeeOrder'), 
+=======
+
+    # Lawas, Arziel Mae L. - part
+
+    path('add_product/', views.add_product, name='add_product'),
+>>>>>>> 8a1263d (Arziel Coddess)
 ]

@@ -1,5 +1,9 @@
 from django import forms
+<<<<<<< HEAD
 from .models import Accounts, Orders
+=======
+from .models import Accounts
+>>>>>>> 8a1263d (Arziel Coddess)
 from .models import Products
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -19,12 +23,16 @@ class AccountUpdateForm(forms.ModelForm):
         model = Accounts
         fields = ['firstname', 'lastname', 'email', 'user_type', 'profile_picture']
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8a1263d (Arziel Coddess)
 # Lawas, Arziel Mae L. - part
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Products
+<<<<<<< HEAD
         fields = ['productID', 'productName', 'price']
 
 
@@ -35,3 +43,6 @@ class OrderForm(forms.ModelForm):
         model = Orders
         fields = ['employeeID', 'employeeName', 'totalSales']
 
+=======
+        fields = ['productID', 'productName', 'price']
+>>>>>>> 8a1263d (Arziel Coddess)
